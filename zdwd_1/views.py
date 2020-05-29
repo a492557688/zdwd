@@ -101,7 +101,7 @@ def order_1(requests):
                     i[1],
                     models.User.objects.get(username=i[0]).num,
                     s_to_max_val[i[0]],
-                    f"{round(i[1]/s_to_max_val[i[0]],2)} %",
+                    f"{round((i[1]/s_to_max_val[i[0]])*100,2)} %",
                     )for i in reg])  #(name,分数,学号,总)
 
         return   render(requests,template_name='order.html',context={"s_to_val":reg})
