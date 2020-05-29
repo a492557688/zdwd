@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<h1>学生答题页面</h1>
+<div>
+    <h1>倒计时</h1>
+    <div id="djs" style="color: red">60</div>
+</div>
+<form action="submit_form"  method="post">
+<h2>客观题</h2>
+{% for kg in Keguan %}
+    <h3>{{ kg.question_content }}</h3>
+
+    {% for kg_cho in Keguan_choise %}
+        {% if kg_cho.TM_id == kg.id  %}
+        <input name="kg_{{ kg.id }}" type="radio" value="{{ kg_cho.choise_keguan }}" />{{ kg_cho.choise_keguan }}.{{ kg_cho.choise_answer }}
+        {% endif %}
+        {% endfor  %}
+{% endfor %}
+<h2>主观题</h2>
+{% for zg in zhuguan %}
+     <h3>{{ zg.question_content}} </h3>
+    <input name="zg_{{ zg.id }}" type="text"/>
+{% endfor %}
+
+    <hr>
+ <input id='tj' type="submit" value="提交" />
+
+
+</form>
+
+<script>
+    setInterval(function () {
+        e=$("#djs");
+        now_num= parseInt(e.text());
+
+        e.text(now_num-1)
+    },1000)
+    setTimeout(function(){
+            e=$("#tj");
+            console.log(e)
+            e.click()
+        }, 60000);
+</script>
+
+</body>
+</html>

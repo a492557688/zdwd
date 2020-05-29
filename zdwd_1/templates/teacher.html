@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>教师答卷系统</h1>
+<form action="submit_form2"  method="post">
+{% for foo in zj_list %}
+    <h1>题目:{{ foo.tm_id.question_content }}</h1>
+    <h4>回答者{{ foo.student_id.username }}</h4>
+    <h3>答：{{ foo.answer }}</h3>
+    请给分：<input type="text" name="da_{{ foo.id }}_{{ foo.student_id.id }}">
+{% endfor %}
+ <input type="submit" value="提交" />
+</form>
+
+
+</body>
+</html>
