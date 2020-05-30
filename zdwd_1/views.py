@@ -13,11 +13,13 @@ def login(requests):
         try:
             user=models.User.objects.get(username=username,password=password)
         except Exception as f :
-            return HttpResponse("登录失败 用户名或密码错误")
+            # return HttpResponse("登录失败 用户名或密码错误")
+            return render(requests, "warning.html", context={"ts": "登录失败 用户名或密码错误"})
         user_obj = models.User.objects.get(username=username)
         if models.keguan_kaojuan.objects.filter(student_id=user_obj) or models.keguan_kaojuan.objects.filter(
                 student_id=user_obj):
-            return HttpResponse("您已经完成答题 无需再答题")
+            # return HttpResponse("您已经完成答题 无需再答题")
+            return render(requests, "warning.html", context={"ts": "您已经完成答题 无需再答题"})
         #取出所有客观题
         Keguan = models.Keguan.objects.all()
         Keguan_choise = models.Choise_keguan.objects.all()  #客观的选项
