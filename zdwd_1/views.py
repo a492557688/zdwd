@@ -70,7 +70,8 @@ def submit_form(requests):
                 val=round(bingo_val,2)
                 # val =int(round((count/len(answer_list))*max_val,0)) # (答对个数/答案个数)*这道题最大分值   比如 5道题答对1道   (1/5)*10分 =2分  比如 5道题答对1道   (1/7)*10分 =2分
                 models.zhuguan_kaojuan.objects.create(student_id=user_obj,tm_id_id=tm,answer=answer,val=val,max_val=max_val)
-        return HttpResponse("恭喜您答题完成")
+        # return HttpResponse("恭喜您答题完成")
+        return render(requests,"warning.html",context={"ts":"恭喜您答题完成"})
 
 from django.db.models import Count,Sum
 def order_1(requests):
